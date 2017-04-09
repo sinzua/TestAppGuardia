@@ -1,0 +1,55 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* proguard-project.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+* src\org\eclipse\paho\client\mqttv3\internal\nls\logcat.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\logcat.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_cs.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_cs.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_de.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_de.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_es.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_es.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_fr.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_fr.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_hu.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_hu.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_it.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_it.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_ja.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_ja.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_ko.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_ko.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_pl.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_pl.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_pt_BR.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_pt_BR.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_ru.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_ru.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_zh_CN.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_zh_CN.properties
+* src\org\eclipse\paho\client\mqttv3\internal\nls\messages_zh_TW.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\internal\nls\messages_zh_TW.properties
+* src\org\eclipse\paho\client\mqttv3\logging\jsr47min.properties => app\src\main\resources\org\eclipse\paho\client\mqttv3\logging\jsr47min.properties
+* src\org\eclipse\paho\client\mqttv3\logging\package.html => app\src\main\resources\org\eclipse\paho\client\mqttv3\logging\package.html
+* src\org\eclipse\paho\client\mqttv3\package.html => app\src\main\resources\org\eclipse\paho\client\mqttv3\package.html
+* src\org\eclipse\paho\client\mqttv3\persist\package.html => app\src\main\resources\org\eclipse\paho\client\mqttv3\persist\package.html
+* src\org\eclipse\paho\client\mqttv3\util\package.html => app\src\main\resources\org\eclipse\paho\client\mqttv3\util\package.html
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

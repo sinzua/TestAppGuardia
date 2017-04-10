@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by JUMBO on 01/04/2017.
@@ -26,6 +28,14 @@ public class EanHandler extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         Bundle b = getIntent().getExtras();
         String message = b.getString("key", ""); // the blank String in the second parameter is the default value of this variable. In case the value from previous activity fails to be obtained, the app won't crash: instead, it'll go with the default value of an empty string
+
+        //creo la mappa per i parametri
+        Map<String,String> map;
+        map = UrlParameterHandler.getInstance().buildMapForItemSearch(message);
+
+        //connetto handler
+
+
         setContentView(R.layout.menu_readed_ean);
 
         eanTextView = (TextView) findViewById(R.id.eanTextView);
@@ -56,7 +66,7 @@ public class EanHandler extends ActionBarActivity {
     public void checkEan(String scanResult) {
 
        /* try {
-            //da inserire metodo ricerca dB
+            //da inserire metodo ricerca dB o ricerca aws
 
             //mCamera.setPreviewDisplay(holder);
         } catch (IOException e) {
@@ -66,3 +76,5 @@ public class EanHandler extends ActionBarActivity {
 
 
 }
+
+

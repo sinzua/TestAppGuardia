@@ -33,8 +33,8 @@ public class SignedRequestsHelper {
     private String endpoint = "webservices.amazon.com"; // must be lowercase
 
     // change this so reads from properties file
-    private String awsAccessKeyId = "AKIAJBVTJSNL6UC7CY5A";
-    private String awsSecretKey = "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";
+    private String awsAccessKeyId = "AKIAICCADS4P3LEJAHTA";
+    private String awsSecretKey = "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";
 
     private SecretKeySpec secretKeySpec = null;
     private Mac mac = null;
@@ -47,6 +47,7 @@ public class SignedRequestsHelper {
         mac.init(secretKeySpec);
     }
 
+    //gli passo i paramtetri e mi restituisce url
     public String sign(Map<String, String> params) {
         params.put("AWSAccessKeyId", awsAccessKeyId);
         params.put("Timestamp", timestamp());

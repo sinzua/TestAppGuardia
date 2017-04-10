@@ -20,16 +20,18 @@ public class UrlParameterHandler {
         return paramHandler;
     }
 
-    public  Map<String,String> buildMapForItemSearch(){
+
+    public  Map<String,String> buildMapForItemSearch(String ean){
         Map<String, String> myparams = new HashMap<String, String>();
         myparams.put("Service", "AWSECommerceService");
         myparams.put("Operation", "ItemSearch");
         myparams.put("Version", "2009-10-01");
         myparams.put("ContentType", "text/xml");
-        myparams.put("SearchIndex", "MobileApps");//for searching mobile apps
-        myparams.put("Keywords", "games");
-        myparams.put("AssociateTag", "apps");
-        myparams.put("MaximumPrice","1000");
+        //myparams.put("SearchIndex", "MobileApps");//for searching mobile apps
+        myparams.put("SearchIndex", "All");//ricerca completa
+        myparams.put("Keywords", ean); //parametro da passare
+        myparams.put("AssociateTag", "lapaginadella-21"); // "app"
+        myparams.put("MaximumPrice","10000");
         myparams.put("Sort","price");
         myparams.put("ResponseGroup", "Images,Small");
         return myparams;

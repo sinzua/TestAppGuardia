@@ -47,11 +47,10 @@ public class SignedRequestsHelper {
         mac.init(secretKeySpec);
     }
 
-    //gli passo i paramtetri e mi restituisce url
+    //gli passo i paramtetri e mi restituisce url per aws
     public String sign(Map<String, String> params) {
         params.put("AWSAccessKeyId", awsAccessKeyId);
         params.put("Timestamp", timestamp());
-
         SortedMap<String, String> sortedParamMap =
                 new TreeMap<String, String>(params);
         String canonicalQS = canonicalize(sortedParamMap);
@@ -68,6 +67,7 @@ public class SignedRequestsHelper {
 
         return url;
     }
+
 
     private String hmac(String stringToSign) {
         String signature = null;

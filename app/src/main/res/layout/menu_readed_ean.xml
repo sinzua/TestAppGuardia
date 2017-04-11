@@ -11,6 +11,13 @@
         android:layout_height="84dp"
         android:text="EanText" />
 
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.27"
+        android:text="Titolo" />
+
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="match_parent"

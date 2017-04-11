@@ -117,13 +117,13 @@ public class Parser {
             is.setCharacterStream(new StringReader(xml));
             doc = (Document) db.parse(is);
         } catch (ParserConfigurationException e) {
-            Log.e("Error: ", e.getMessage());
+            Log.e("Errore ParserConfig: ", e.getMessage());
             return null;
         } catch (SAXException e) {
-            Log.e("Error: ", e.getMessage());
+            Log.e("Error SAXException : ", e.getMessage());
             return null;
         } catch (IOException e) {
-            Log.e("Error: ", e.getMessage());
+            Log.e("Error IOException: ", e.getMessage());
             return null;
         }
 

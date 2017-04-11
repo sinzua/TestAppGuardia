@@ -61,7 +61,7 @@ public class EanHandler extends ActionBarActivity {
         //creo la lista
         NodeList nd = pr.getResponceNodeList(url);
         if(nd == null){
-            Log.d("NodeList", "lista vuota");
+            Log.d("NodeListNodeList", "lista vuota");
         }else {
             //recupero oggetto
             SearchObject o = pr.getSearchObject(nd, 0);

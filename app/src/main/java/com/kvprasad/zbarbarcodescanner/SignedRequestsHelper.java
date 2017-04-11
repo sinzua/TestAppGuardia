@@ -30,11 +30,11 @@ public class SignedRequestsHelper {
     private static final String REQUEST_METHOD = "GET";
 
     // use xml-uk.amznxslt.com for xslt requests, or ecs.amazonaws.co.uk for others
-    private String endpoint = "webservices.amazon.com"; // must be lowercase
+    private String endpoint = "webservices.amazon.it"; // must be lowercase
 
     // change this so reads from properties file
-    private String awsAccessKeyId = "AKIAICCADS4P3LEJAHTA";
-    private String awsSecretKey = "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";
+    private String awsAccessKeyId = "AKIAIAJKIGMNIFW23E4A";
+    private String awsSecretKey = "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";
 
     private SecretKeySpec secretKeySpec = null;
     private Mac mac = null;

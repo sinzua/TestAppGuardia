@@ -30,9 +30,9 @@ public class UrlParameterHandler {
         //myparams.put("SearchIndex", "MobileApps");//for searching mobile apps
         myparams.put("SearchIndex", "All");//ricerca completa
         myparams.put("Keywords", ean); //parametro da passare
-        myparams.put("AssociateTag", "app"); // "app"
+        myparams.put("AssociateTag", "raksty-21"); // "app"
         myparams.put("MaximumPrice","10000");
-        myparams.put("Sort","price");
+        //myparams.put("Sort","price");
         myparams.put("ResponseGroup", "Images,Small");
         return myparams;
     }

@@ -59,21 +59,30 @@ public class EanHandler extends ActionBarActivity {
         //creo oggetto parser
         Parser pr = new Parser();
         //creo la lista
-        NodeList nd = pr.getResponceNodeList(url);
+       //NodeList nd = pr.getResponceNodeList(url);
+        SearchObject o = (SearchObject) pr.getObject(url);
+
+       /*
         if(nd == null){
             Log.d("NodeListNodeList", "lista vuota");
-        }else {
+            Log.d("NodeListNodeList", url);
+           // Log.d("NodeListNodeList", String.valueOf(nd.item(0)));
+       }else {*/
             //recupero oggetto
-            SearchObject o = pr.getSearchObject(nd, 0);
-            if(o!=null){
+            //SearchObject o = pr.getSearchObject(nd, 0);
                 //recupero titolo
-                String titolo = o.getTitle();
-                textTitle = (TextView) findViewById(R.id.textTitle);
-                textTitle.setText(titolo); //message
-            }
+                /*textTitle = (TextView) findViewById(R.id.textTitle);
+                textTitle.setText(titolo); //message */
+            //}
 
             //
-        }
+        if(o==null){
+                Log.d("SearchObject", "vuoto");
+            }else{
+                String titolo = o.getTitle();
+                Log.d("SearchObject getTitle()", titolo);
+            }
+
         setContentView(R.layout.menu_readed_ean);
 
         eanTextView = (TextView) findViewById(R.id.eanTextView);

@@ -54,7 +54,7 @@ public class Parser {
         NodeList items = null;
         if (searchResponce != null) {
             try {
-                doc = this.getDomElement(searchResponce);
+                doc = this.getDomElement(service_url);
                 items = doc.getElementsByTagName(KEY_ROOT);
                 Element element=(Element)items.item(0);
                 if(isResponceValid(element)){
@@ -88,15 +88,41 @@ public class Parser {
         return false;
     }
 
-    /** In app reused functions */
 
+    public SearchObject getObject(String service_url) {
+        String searchResponce = this.getUrlContents(service_url);
+        Log.i("getObject url",""+service_url);
+        Log.i("getObject responce",""+searchResponce);
+        Document doc;
+        SearchObject item = null;
+        if (searchResponce != null) {
+            try {
+                doc = this.getDomElement(service_url);
+                item = (SearchObject) doc.getElementsByTagName(KEY_ITEM); //inserisco solo un oggetto.. xml mi restituisce solo q
+                Log.d("getObject>>>>>>" , item.getTitle());
+            } catch (Exception e) {
+                Log.e("getObject Exception",String.valueOf(e));
+                e.printStackTrace();
+            }
+        }else{
+            Log.d("getObject", "searchResponce null");
+        }
+
+        return item;
+    }
+
+
+
+    /** In app reused functions */
     private String getUrlContents(String theUrl) {
         StringBuilder content = new StringBuilder();
+        //int BUFFER_SIZE = 8192;
         try {
             URL url = new URL(theUrl);
             URLConnection urlConnection = url.openConnection();
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(urlConnection.getInputStream()), 8);
+                    //new InputStreamReader(urlConnection.getInputStream()), BUFFER_SIZE);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 content.append(line + "");
@@ -110,12 +136,16 @@ public class Parser {
 
     public Document getDomElement(String xml) {
         Document doc = null;
+       // Log.e("getDomElement URL--->: ", xml);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
-            DocumentBuilder db = dbf.newDocumentBuilder();
+            /*DocumentBuilder db = dbf.newDocumentBuilder();
             InputSource is = new InputSource();
             is.setCharacterStream(new StringReader(xml));
-            doc = (Document) db.parse(is);
+            doc = (Document) db.parse(is);*/
+
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document dom = db.parse(xml);
         } catch (ParserConfigurationException e) {
             Log.e("Errore ParserConfig: ", e.getMessage());
             return null;
@@ -123,6 +153,7 @@ public class Parser {
             Log.e("Error SAXException : ", e.getMessage());
             return null;
         } catch (IOException e) {
+            Log.e("Error IOException URL: ", xml);
             Log.e("Error IOException: ", e.getMessage());
             return null;
         }

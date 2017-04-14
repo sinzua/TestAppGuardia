@@ -8,7 +8,7 @@ class SearchObject {
     private String url =null;
     private String id = null;
     private String imageUrl;
-    private String title;
+    private String title =null;
 
     public void setUrl(String url) {
         this.url = url;
@@ -27,18 +27,18 @@ class SearchObject {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() {return this.id;}
 
     public String getUrl() {
-        return url;
+        return this.url;
     }
+
+
 }

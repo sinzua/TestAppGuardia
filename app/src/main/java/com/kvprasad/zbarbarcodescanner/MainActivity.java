@@ -27,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
-        }
-
+        boolean permissionCamera = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+        boolean permissionInternet = ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
+        if(!permissionCamera) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 200);}
+        if(!permissionInternet) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 200);}
 
         scannerButton = (Button) findViewById(R.id.scannerButton);
         manualButton = (Button) findViewById(R.id.manualButton);

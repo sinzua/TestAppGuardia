@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.17"
+        android:allowUndo="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:inputType="none"
+        android:text="Prodotto gia Inserito si desidera modificarlo?"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#e6ffe6">
+
+        <Button
+            android:id="@+id/additemno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:background="#ff6666"
+            android:layout_marginStart="15dp"
+            android:text="NO" />
+
+        <Button
+            android:id="@+id/additemyes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#b3d9ff"
+            android:text="SI" />
+    </RelativeLayout>
+
+
+</LinearLayout>

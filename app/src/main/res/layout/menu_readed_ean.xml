@@ -1,28 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="EAN"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
         android:id="@+id/eanTextView"
         android:layout_width="match_parent"
-        android:layout_height="84dp"
+        android:layout_height="42dp"
+        android:gravity="center_vertical|center"
+        android:inputType="none"
         android:text="EanText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Prodotto"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:gravity="center_vertical|center"
+        android:inputType="none"
+        android:text="Titolo" />
+
+    <TextView
+        android:id="@+id/textURL"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.27"
-        android:text="Titolo" />
+        android:foregroundGravity="center_vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:inputType="none"
+        android:text="URL" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center"
+        android:text="AGGIUNGI" />
 
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.11"
+        android:gravity="center_vertical|center"
         android:text="indietro" />
 
 </LinearLayout>

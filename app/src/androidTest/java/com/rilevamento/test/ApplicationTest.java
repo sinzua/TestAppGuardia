@@ -1,4 +1,4 @@
-package com.kvprasad.zbarbarcodescanner;
+package com.rilevamento.test;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

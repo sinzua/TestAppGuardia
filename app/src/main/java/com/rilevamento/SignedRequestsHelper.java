@@ -1,4 +1,4 @@
-package com.kvprasad.zbarbarcodescanner;
+package com.rilevamento;
 
 /**
  * Created by JUMBO on 01/04/2017.
@@ -24,20 +24,21 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 public class SignedRequestsHelper {
+
     private static final String UTF8_CHARSET = "UTF-8";
     private static final String HMAC_SHA256_ALGORITHM = "HmacSHA256";
     private static final String REQUEST_URI = "/onca/xml";
     private static final String REQUEST_METHOD = "GET";
 
     // use xml-uk.amznxslt.com for xslt requests, or ecs.amazonaws.co.uk for others
-    private String endpoint = "webservices.amazon.it"; // must be lowercase
+    String endpoint = "webservices.amazon.it"; // must be lowercase
 
-    // change this so reads from properties file
-    private String awsAccessKeyId = "AKIAIAJKIGMNIFW23E4A";
-    private String awsSecretKey = "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";
+    // change this so reads from properties file bla..JH42KWPRROQbla..
+    String awsAccessKeyId = "bla..AKIAJAK2J";
+    String awsSecretKey = "bla...QbhTDJdJvuE2dTY1nQlLIG3+bla...5Gg1JhLql9b/RkeDbla..";
 
-    private SecretKeySpec secretKeySpec = null;
-    private Mac mac = null;
+    SecretKeySpec secretKeySpec = null;
+    Mac mac = null;
 
     public SignedRequestsHelper() throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
         byte[] secretyKeyBytes = awsSecretKey.getBytes(UTF8_CHARSET);
@@ -78,10 +79,7 @@ public class SignedRequestsHelper {
             rawHmac = mac.doFinal(data);
             Base64 encoder = new Base64();
             signature = new String(encoder.encode(rawHmac));
-/*
-            String converted = Base64.encodeToString(toConvert.toString().getBytes(), Base64.DEFAULT);
-            signature = new String(Base64.decode(converted, Base64.DEFAULT));
-*/
+
 
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(UTF8_CHARSET + " is unsupported!", e);
@@ -134,3 +132,4 @@ public class SignedRequestsHelper {
         return out;
     }
 }
+

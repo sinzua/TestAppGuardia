@@ -1,4 +1,4 @@
-package com.kvprasad.zbarbarcodescanner;
+package com.rilevamento;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+
+import com.rilevamento.R;
 
 import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
@@ -143,7 +145,7 @@ public class BarcodeScanner extends AppCompatActivity {
                     Bundle str= new Bundle();
                     str.putString("key", scanResult);
                     //aggiungo
-                    Intent intent = new Intent(BarcodeScanner.this, EanHandler.class).putExtras(str);;
+                    Intent intent = new Intent(BarcodeScanner.this, EanHandler.class).putExtras(str);
                     startActivity(intent);
 
 
@@ -161,11 +163,11 @@ public class BarcodeScanner extends AppCompatActivity {
     // Mimic continuous auto-focusing
     Camera.AutoFocusCallback autoFocusCB = new Camera.AutoFocusCallback() {
         public void onAutoFocus(boolean success, Camera camera) {
-            autoFocusHandler.postDelayed(doAutoFocus, 1000);
+            autoFocusHandler.postDelayed(doAutoFocus, 300);
         }
     };
 
-
+/*
     private void showAlertDialog(String message) {
 
         new AlertDialog.Builder(this)
@@ -180,5 +182,5 @@ public class BarcodeScanner extends AppCompatActivity {
 
                 .show();
     }
-
+*/
 }

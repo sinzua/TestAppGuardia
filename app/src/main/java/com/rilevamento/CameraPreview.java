@@ -1,4 +1,4 @@
-package com.kvprasad.zbarbarcodescanner;
+package com.rilevamento;
 
 import android.content.Context;
 import android.hardware.Camera;

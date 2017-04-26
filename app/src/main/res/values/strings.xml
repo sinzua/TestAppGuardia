@@ -1,6 +1,42 @@
 <resources>
-    <string name="app_name">TestAppGuardia</string>
+    <string name="app_name">TestApp Rilevemanto by Guardia</string>
 
     <string name="hello_world">Coddatevi!</string>
     <string name="action_settings">Impostazioni</string>
+    <string name="ok">Ok</string>
+    <string name="ean">EAN</string>
+    <string name="prodotto">Prodotto</string>
+
+
+
+    <string name="categories_prompt">Scegliere una Categoria</string>
+    <string-array name="categories_arrays">
+        <item>Scegliere una Categoria</item>
+        <item>Abbigliamento</item>
+        <item>Alimentari e cura della casa</item>
+        <item>App e Giochi</item>
+        <item>Auto e Moto</item>
+        <item>Bellezza</item>
+        <item>Buoni Regalo</item>
+        <item>Cancelleria e prodotti per ufficio</item>
+        <item>Casa e cucina</item>
+        <item>CD e Vinili </item>
+        <item>Elettronica</item>
+        <item>Fai da te</item>
+        <item>Film e TV</item>
+        <item>Giardino e giardinaggio</item>
+        <item>Giochi e giocattoli</item>
+        <item>Handmade</item>
+        <item>Illuminazione</item>
+        <item>Informatica</item>
+        <item>Musica Digitale</item>
+        <item>Orologi</item>
+        <item>Prima infanzia</item>
+        <item>Salute e cura della persona</item>
+        <item>Scarpe e borse</item>
+        <item>Software</item>
+        <item>Sport e tempo libero</item>
+        <item>Strumenti musicali e DJ</item>
+        <item>Videogiochi</item>
+    </string-array>
 </resources>

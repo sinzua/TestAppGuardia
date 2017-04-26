@@ -1,4 +1,4 @@
-package com.kvprasad.zbarbarcodescanner;
+package com.rilevamento;
 
 import android.Manifest;
 import android.content.Context;
@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.rilevamento.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //new RetrieveFeedTask().execute(urlToRssFeed);
 
         boolean permissionCamera = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
         boolean permissionInternet = ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
@@ -50,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         manualButton.setOnClickListener(new View.OnClickListener() {
             //@Override
             Context context = getApplicationContext();
-            CharSequence text = "TEST - Carica Manualmente!";
+            CharSequence text = "Carica Manualmente" +
+                    "DA COMPLETARE";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
-            public void onClick(View v) {/*
-                Intent intent = new Intent(v.getContext(), BarcodeScanner.class);
-                startActivity(intent);*/
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ManualInsert.class);
+                startActivity(intent);
                 toast.show();
             }
         });
@@ -63,21 +67,19 @@ public class MainActivity extends AppCompatActivity {
         listLoadedButton.setOnClickListener(new View.OnClickListener() {
            // @Override
             Context context = getApplicationContext();
-            CharSequence text = "TEST - Lista Caricati!";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
+            //Toast toast = Toast.makeText(context, text, duration);
             public void onClick(View v) {
-               /* Intent intent = new Intent(v.getContext(), BarcodeScanner.class);
-                startActivity(intent);*/
-                toast.show();
+                Intent intent = new Intent(v.getContext(), DataLoaded.class);
+                startActivity(intent);
+                //toast.show();
             }
         });
 
         loadDataButton.setOnClickListener(new View.OnClickListener() {
            // @Override
             Context context = getApplicationContext();
-            CharSequence text = "TEST - Carica Dati!";
+            CharSequence text = "Carica Dati! " +
+                    "DA COMPLETARE";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             public void onClick(View v) {

@@ -1,4 +1,4 @@
-package com.kvprasad.zbarbarcodescanner;
+package com.rilevamento;
 
 /**
  * Created by JUMBO on 01/04/2017.

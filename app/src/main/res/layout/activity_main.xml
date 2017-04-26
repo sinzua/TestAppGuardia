@@ -6,51 +6,57 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context="com.rilevamento.MainActivity">
+
+    <Button
+        android:id="@+id/listLoadedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".50"
+        android:background="@color/colorPrimary"
+        android:text="Elenco Inseriti"
+        android:textSize="10sp"
+        android:layout_marginBottom="17dp"
+        android:layout_above="@+id/loadDataButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/manualButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".50"
+        android:background="@color/colorPrimary"
+        android:text="Inserisci Manualmente"
+        android:textSize="12sp"
+        android:layout_marginBottom="17dp"
+        android:layout_above="@+id/listLoadedButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/scannerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:bottomRightRadius="30dp"
         android:text="Lettore"
-        android:layout_alignParentTop="true"
+        android:textSize="30sp"
+        android:topLeftRadius="30dp"
+        android:layout_above="@+id/manualButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="96dp" />
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentTop="true" />
 
     <Button
         android:id="@+id/loadDataButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Carica Dati"
-        android:layout_marginBottom="73dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:id="@+id/listLoadedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/loadDataButton"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="12dp"
-        android:text="Elenco Inseriti" />
 
-    <Button
-        android:id="@+id/manualButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/scannerButton"
-        android:layout_marginTop="27dp"
-        android:text="Inserisci Manualmente" />
 </RelativeLayout>

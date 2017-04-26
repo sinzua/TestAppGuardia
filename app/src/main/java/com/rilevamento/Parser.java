@@ -1,4 +1,4 @@
-package com.kvprasad.zbarbarcodescanner;
+package com.rilevamento;
 
 /**
  * Created by JUMBO on 01/04/2017.
@@ -10,7 +10,6 @@ package com.kvprasad.zbarbarcodescanner;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -22,12 +21,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.util.Log;
 
-public class Parser {
+public class Parser{
+
     /** ---------------------  Search TAG --------------------- */
     private static final String KEY_ROOT="Items";
     private static final String KEY_REQUEST_ROOT="Request";
@@ -39,6 +40,8 @@ public class Parser {
     private static final String KEY_IMAGE_CONTAINER="URL";
     private static final String KEY_ITEM_ATTR_CONTAINER="ItemAttributes";
     private static final String KEY_ITEM_ATTR_TITLE="Title";
+    private static final String KEY_ITEM_ATTR_MANIFACTURER="Manufacturer";
+    private static final String KEY_ITEM_ATTR_PRODUCTGROUP="ProductGroup";
 
     private static final String VALUE_VALID_RESPONCE="True";
 
@@ -69,14 +72,44 @@ public class Parser {
 
     public SearchObject getSearchObject(NodeList list,int position){
         SearchObject object=new SearchObject();
-        Element e=(Element)list.item(position);
-        object.setUrl(this.getValue(e, KEY_ITEM_URL));
-        object.setId(this.getValue(e, KEY_ID));
-        object.setImageUrl(this.getValue((Element)(e.getElementsByTagName(KEY_IMAGE_ROOT).item(0))
-                , KEY_IMAGE_CONTAINER));
-        object.setTitle(this.getValue((Element)(e.getElementsByTagName(KEY_ITEM_ATTR_CONTAINER).item(0))
-                , KEY_ITEM_ATTR_TITLE));
-        return object;
+        Element el=(Element)list.item(position);//non va bene... il position va a cazzi suoi
+        Element e=(Element)list.item(0);
+        String url, id, img, title,manufacturer,productGroup;
+        if(list==null){
+            Log.e("getSearchObject LISTA", "VUOTA");
+            Log.d("getSearchObject pos", String.valueOf(position));
+            return null;
+        }else
+            Log.d("getSearchObject LISTA", "VALIDA");
+
+        if(e!=null) {
+            url = this.getValue(e, KEY_ITEM_URL);
+            Log.d("getSearchObject URL", url);
+            object.setUrl(url);
+            id = this.getValue(e, KEY_ID);
+            Log.d("getSearchObject ID", id);
+            object.setId(id);
+            img = this.getValue((Element) (e.getElementsByTagName(KEY_IMAGE_ROOT).item(0))
+                    , KEY_IMAGE_CONTAINER);
+            Log.d("getSearchObject IMG", img);
+            object.setImageUrl(img);
+            title = this.getValue((Element) (e.getElementsByTagName(KEY_ITEM_ATTR_CONTAINER).item(0))
+                    , KEY_ITEM_ATTR_TITLE);
+            object.setTitle(title);
+            Log.d("getSearchObject Title", title);
+            manufacturer = this.getValue((Element) (e.getElementsByTagName(KEY_ITEM_ATTR_CONTAINER).item(0))
+                    , KEY_ITEM_ATTR_MANIFACTURER);
+            object.setManufacturer(manufacturer);
+            Log.d("getSearchObject manufac", manufacturer);
+            productGroup = this.getValue((Element) (e.getElementsByTagName(KEY_ITEM_ATTR_CONTAINER).item(0))
+                    , KEY_ITEM_ATTR_PRODUCTGROUP);
+            object.setProductGroup(productGroup);
+            Log.d("getSearchObject product", productGroup);
+
+            return object;
+        }
+        Log.e("getSearchObject", "NULLO");
+        return null;
     }
 
     public boolean isResponceValid(Element element){
@@ -87,32 +120,6 @@ public class Parser {
         }
         return false;
     }
-
-
-    public SearchObject getObject(String service_url) {
-        String searchResponce = this.getUrlContents(service_url);
-        Log.i("getObject url",""+service_url);
-        Log.i("getObject responce",""+searchResponce);
-        Document doc;
-        SearchObject item = null;
-        if (searchResponce != null) {
-            try {
-                doc = this.getDomElement(service_url);
-                item = (SearchObject) doc.getElementsByTagName(KEY_ITEM); //inserisco solo un oggetto.. xml mi restituisce solo q
-                Log.d("getObject>>>>>>" , item.getTitle());
-            } catch (Exception e) {
-                Log.e("getObject Exception",String.valueOf(e));
-                e.printStackTrace();
-            }
-        }else{
-            Log.d("getObject", "searchResponce null");
-        }
-
-        return item;
-    }
-
-
-
     /** In app reused functions */
     private String getUrlContents(String theUrl) {
         StringBuilder content = new StringBuilder();
@@ -139,13 +146,8 @@ public class Parser {
        // Log.e("getDomElement URL--->: ", xml);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
-            /*DocumentBuilder db = dbf.newDocumentBuilder();
-            InputSource is = new InputSource();
-            is.setCharacterStream(new StringReader(xml));
-            doc = (Document) db.parse(is);*/
-
             DocumentBuilder db = dbf.newDocumentBuilder();
-            Document dom = db.parse(xml);
+            doc = db.parse(xml);
         } catch (ParserConfigurationException e) {
             Log.e("Errore ParserConfig: ", e.getMessage());
             return null;
@@ -178,7 +180,37 @@ public class Parser {
     }
 
     public String getValue(Element item, String str) {
-        NodeList n = item.getElementsByTagName(str);
-        return this.getElementValue(n.item(0));
+        Log.d(">>>>>getValue", str);
+        if(item!=null && str != null) {
+            NodeList n = item.getElementsByTagName(str);
+            return this.getElementValue(n.item(0));
+        }
+        return null;
     }
+
+
 }
+
+
+
+/*
+    public SearchObject getObject(String service_url) {
+        String searchResponce = this.getUrlContents(service_url);
+        Log.i("getObject url",""+service_url);
+        Log.i("getObject responce",""+searchResponce);
+        Document doc;
+        SearchObject item =null;
+        if (searchResponce != null) {
+            try {
+                doc = this.getDomElement(service_url);
+                item = (SearchObject) doc.getElementsByTagName(KEY_ITEM); //inserisco solo un oggetto.. xml mi restituisce solo q
+                Log.d("getObject>>>>>>" , item.getTitle());
+            } catch (Exception e) {
+                Log.e("getObject Exception",String.valueOf(e));
+                e.printStackTrace();
+            }
+        }
+        return item;
+    }
+
+*/

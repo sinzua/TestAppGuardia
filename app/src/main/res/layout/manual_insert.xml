@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="7"
+    android:background="#ffb6ffb0">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="0.5"
+        android:gravity="center_horizontal"
+        android:text="Inserimento Manuale"
+        android:textSize="25sp"
+        android:textStyle="italic|normal" />
+
+    <Spinner
+        android:id="@+id/spinnercategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.41"
+        android:entries="@array/categories_arrays"
+        android:prompt="@string/categories_prompt"
+        android:textSize="25sp"
+        android:textStyle="italic|normal" />
+
+    <EditText
+        android:id="@+id/manualEan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="EAN"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/manualBrand"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:hint="Marca" />
+
+    <EditText
+        android:id="@+id/manualModel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:hint="Modello" />
+
+    <EditText
+        android:id="@+id/manualPrice"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:hint="Prezzo"
+        android:inputType="numberDecimal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/addItembtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#ffff2f5d"
+            android:text="Aggiungi"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtresulttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:gravity="left"
+        android:text=""
+        android:layout_weight="1"
+        android:textStyle="italic|bold"
+        android:textSize="20sp" />
+</LinearLayout>

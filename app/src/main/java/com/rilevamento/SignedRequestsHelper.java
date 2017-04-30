@@ -33,9 +33,13 @@ public class SignedRequestsHelper {
     // use xml-uk.amznxslt.com for xslt requests, or ecs.amazonaws.co.uk for others
     String endpoint = "webservices.amazon.it"; // must be lowercase
 
+    /*
     // change this so reads from properties file bla..JH42KWPRROQbla..
     String awsAccessKeyId = "bla..AKIAJAK2J";
     String awsSecretKey = "bla...QbhTDJdJvuE2dTY1nQlLIG3+bla...5Gg1JhLql9b/RkeDbla..";
+    */
+    String awsAccessKeyId = " ";
+    String awsSecretKey = " ";
 
     SecretKeySpec secretKeySpec = null;
     Mac mac = null;

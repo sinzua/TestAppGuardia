@@ -3,8 +3,6 @@ package com.rilevamento;
 /**
  * Created by JUMBO on 01/04/2017.
  *
- * AWSAccessKeyId=AKIAICCADS4P3LEJAHTA
- AWSSecretKey=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
 
  */
 import java.io.BufferedReader;

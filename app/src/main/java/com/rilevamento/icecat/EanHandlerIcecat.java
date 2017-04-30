@@ -1,26 +1,29 @@
-package com.rilevamento;
+package com.rilevamento.icecat;
+
+/**
+ * Created by Jumbo on 30/04/2017.
+ */
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.rilevamento.AddItem;
+import com.rilevamento.AddManual;
+import com.rilevamento.EanChecker;
+import com.rilevamento.EanConfirm;
+import com.rilevamento.Parser;
+import com.rilevamento.SearchObject;
+import com.rilevamento.SignedRequestsHelper;
+import com.rilevamento.UrlParameterHandler;
 
 import org.w3c.dom.NodeList;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.Map;
 
 /** s
@@ -30,36 +33,28 @@ import java.util.Map;
  http://mobilemerit.com/amazon-product-advertising-api-tutorial/
  */
 
-public class EanHandler extends AppCompatActivity {
+public class EanHandlerIcecat extends AppCompatActivity {
     EanChecker eanChecker = new EanChecker();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = getIntent().getExtras();
         String ean= b.getString("key", ""); // the blank String in the second parameter is the default value of this variable. In case the value from previous activity fails to be obtained, the app won't crash: instead, it'll go with the default value of an empty string
-        Map<String, String> map;
-        map = UrlParameterHandler.getInstance().buildMapForItemSearch(ean);
         //StartLoading
-        startLoading(map, ean);
+        startLoading(ean);
     }
 
-    public void startLoading(Map map, String ean){
-        SignedRequestsHelper sh;
+    public void startLoading(String ean){
+        SignedRequestsHelperIcecat sh;
         try {
-            sh = new SignedRequestsHelper();
-            String url = sh.sign(map);
-            Log.d("url>>>", url);
+            sh = new SignedRequestsHelperIcecat();
+            String url = sh.signUrl(ean);
+            Log.d("url>>>", url+" "+ean);
             if(url!=null){
-                new LoadAsync().execute(url, ean);
+                new com.rilevamento.icecat.EanHandlerIcecat.LoadAsync().execute(url, ean);
             }
-        } catch (UnsupportedEncodingException e) {
-            Log.d("UnsupEncodingExcep", String.valueOf(e));
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            Log.d("NoSuchAlgExcep", String.valueOf(e));
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            Log.d("InvalidKeyExcep", String.valueOf(e));
+        } catch (Exception e) {
+            Log.d("Exception ", String.valueOf(e));
             e.printStackTrace();
         }
     }
@@ -72,11 +67,11 @@ public class EanHandler extends AppCompatActivity {
             String asin, title,manufacturer,productGroup;
             SearchObject o;
             Log.d("String url", url);
-            Parser parser = new Parser();
+            ParserIcecat parser = new ParserIcecat();
             NodeList nodeList;
             nodeList = parser.getResponceNodeList(url);
             if (nodeList != null) {
-                    //Log.d("connect() -> Titolo", parser.getSearchObject(nodeList,0).getTitle());
+                //Log.d("connect() -> Titolo", parser.getSearchObject(nodeList,0).getTitle());
                 o = parser.getSearchObject(nodeList,0);
                 if(o!=null) {
                     title = o.getTitle();
@@ -86,7 +81,7 @@ public class EanHandler extends AppCompatActivity {
                     //Log.d("connect() -> Titolo", str);
                     //verifico che non sia gia stato inserito
                     if(!checkEan(ean)){ //verifica questo cazzo
-                       // Toast.makeText(getApplicationContext(), "Prodotto Gia inserito", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplicationContext(), "Prodotto Gia inserito", Toast.LENGTH_SHORT).show();
                         popUpVerifier(asin, ean, title, manufacturer, productGroup);
                     }else {
                         //inserisco i dati
@@ -107,7 +102,7 @@ public class EanHandler extends AppCompatActivity {
         private boolean checkEan(String ean) {
             if(eanChecker.EanVerifier(ean))
                 return true;
-                else
+            else
                 return false;
         }
 
@@ -118,7 +113,7 @@ public class EanHandler extends AppCompatActivity {
                 @Override
                 public void run() {
                     //Toast.makeText(getApplicationContext(), "PRODOTTO NON TROVATO", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(new Intent(EanHandler.this,AddManual.class).putExtras(str));
+                    Intent intent = new Intent(new Intent(com.rilevamento.icecat.EanHandlerIcecat.this,AddManual.class).putExtras(str));
                     startActivity(intent);
                     //startActivity(new Intent(EanHandler.this,AddManual.class)).putExtras(ean);
                 }
@@ -137,7 +132,7 @@ public class EanHandler extends AppCompatActivity {
                 @Override
                 public void run() {
                     //Toast.makeText(getApplicationContext(), "PRODOTTO NON TROVATO", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(new Intent(EanHandler.this,AddItem.class).putExtras(str));
+                    Intent intent = new Intent(new Intent(com.rilevamento.icecat.EanHandlerIcecat.this,AddItem.class).putExtras(str));
                     startActivity(intent);
                     //startActivity(new Intent(EanHandler.this,AddManual.class)).putExtras(ean);
                 }
@@ -152,17 +147,17 @@ public class EanHandler extends AppCompatActivity {
             str.putString("manufacturer", manufacturer);
             str.putString("productGroup", productGroup);
             str.putString("asin", asin);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                //Toast.makeText(getApplicationContext(), "PRODOTTO NON TROVATO", Toast.LENGTH_LONG).show();
-                Log.d("popUpVerifier ean ", ean);
-                Intent intent = new Intent(new Intent(EanHandler.this,EanConfirm.class).putExtras(str));
-                startActivity(intent);
-                //startActivity(new Intent(EanHandler.this,AddManual.class)).putExtras(ean);
-            }
-        });
-    }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    //Toast.makeText(getApplicationContext(), "PRODOTTO NON TROVATO", Toast.LENGTH_LONG).show();
+                    Log.d("popUpVerifier ean ", ean);
+                    Intent intent = new Intent(new Intent(com.rilevamento.icecat.EanHandlerIcecat.this,EanConfirm.class).putExtras(str));
+                    startActivity(intent);
+                    //startActivity(new Intent(EanHandler.this,AddManual.class)).putExtras(ean);
+                }
+            });
+        }
 
 
     }

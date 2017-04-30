@@ -4,7 +4,7 @@ package com.rilevamento;
  * Created by JUMBO on 03/04/2017.
  */
 
-class SearchObject {
+public class SearchObject {
     private String url =null;
 
 
